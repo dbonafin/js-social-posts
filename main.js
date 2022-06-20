@@ -40,6 +40,7 @@ const postsArray = [
     }
 ];
 
+
 // MILESTONE 2 
 // Prendendo come riferimento il layout di esempio presente nell'html
 // stampiamo i post del nostro feed.
@@ -92,4 +93,35 @@ for(let i = 0; i < postsArray.length; i++) {
 
     // Append the new post to the post list in the DOM
     postList.innerHTML += postCard;
+}
+
+
+// MILESTONE 3 
+// Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone
+// ed incrementiamo il counter dei likes relativo.
+
+// Select the like-button and his relative likes-counter in the DOM
+const likeButton = document.querySelectorAll('.js-like-button');
+const likesCounter = document.querySelectorAll('.js-likes-counter');
+
+for(let i = 0; i < likeButton.length; i++) {
+    const thisLikeBtn = likeButton[i];
+
+    // Function that increases the likes number after the click on the like button
+    thisLikeBtn.addEventListener('click', function(event) {
+        // Reset the default scroll-up of the browser 
+        event.preventDefault();
+
+        // Just if the button is not alreay clicked
+        if(!this.classList.contains('like-button--liked')) {
+            this.classList.add('like-button--liked');
+            // Select the DOM element that will be changed after the click
+            const relativeCounterNumber = likesCounter[i];
+            let relativeLikesNumber = parseInt(relativeCounterNumber.innerHTML);
+            // Increase the likes number and write in the DOM the new number of likes
+            relativeLikesNumber++;
+            relativeCounterNumber.innerHTML = relativeLikesNumber;
+        }
+    }
+    );
 }
