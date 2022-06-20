@@ -15,11 +15,7 @@ const postsArray = [
         id: 1,
         name: "Phil Mangione",
         userpic: "https://unsplash.it/300/300?image=15",
-        date: {
-            year: 2022, 
-            month: 05, 
-            day: 28
-        },
+        date: "06/28/2022",
         text: "lorem ipsum dolor sit amet with some extra text ecc ecc",
         img: "https://unsplash.it/600/300?image=171",
         likes: 80
@@ -28,7 +24,7 @@ const postsArray = [
         id: 2,
         name: "Sofia Perlari",
         userpic: "https://unsplash.it/300/300?image=432",
-        date: "06/28/2022",
+        date: "09/14/2011",
         text: "Beautiful day!",
         img: "https://unsplash.it/600/300?image=671",
         likes: 130
@@ -37,7 +33,7 @@ const postsArray = [
         id: 3,
         name: "Giulio Bot",
         userpic: "https://unsplash.it/300/300?image=132",
-        date: "06/28/2022",
+        date: "11/02/2002",
         text: "Who wants to take a coffee in the new starbucks of Turin?",
         img: null,
         likes: 05
@@ -66,7 +62,7 @@ for(let i = 0; i < postsArray.length; i++) {
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${thisPost.name}</div>
-                    <div class="post-meta__time">${thisPost.date}</div>
+                    <div class="post-meta__time">${changeFormat(thisPost.date)}</div>
                 </div>                    
             </div>
         </div>
@@ -97,18 +93,6 @@ for(let i = 0; i < postsArray.length; i++) {
 
     // Append the new post to the post list in the DOM
     postList.innerHTML += postCard;
-
-
-
-    // BONUS 1
-    // Formattare le date in formato italiano (gg/mm/aaaa)
-
-    const postDate = document.querySelector('.post-meta__time');
-    
-    const event = new Date(Date.UTC(thisPost.year, thisPost.month, thisPost.day));
-    const options = {year: 'numeric', month: 'numeric', day: 'numeric'};
-    postDate.innerHTML += event;
-    console.log(event.toLocaleDateString('de-DE', options));
 }
 
 // ===========================================================================
@@ -142,3 +126,13 @@ for(let i = 0; i < likeButton.length; i++) {
     );
 };
 
+
+
+// BONUS 1
+// Function that selects the date and changes the format
+
+function changeFormat(originalDate) {
+    const datesArray = originalDate.split("/");
+    // Return the value by the desired order
+    return `${datesArray[1]}/${datesArray[0]}/${datesArray[2]}`
+}
